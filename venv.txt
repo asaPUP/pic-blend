@@ -1,0 +1,5 @@
+Para activar venv:
+$ ./sistemin/Scrips/activate
+
+Para desactivar venv:
+$ deactivate
