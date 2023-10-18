@@ -1,4 +1,7 @@
-Para activar venv:
+Para activar venv UNIX:
+$ source env/bin/activate
+
+Windows:
 $ ./sistemin/Scrips/activate
 
 Para desactivar venv:
