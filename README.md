@@ -6,13 +6,13 @@ Proyecto para la materia de Ingenieria de Software.
 Para la instalación se necesita Python 3.11.x. Primeramente se crea una 
 máquina virtual dentro del directorio raíz del proyecto.
 
-UNIX:
+GNU/Linux o MacOS:
 ```
 $ python3 -m venv venv
 $ source ./venv/bin/activate
 ```
 
-WINDOWS:
+Windows:
 ```
 > virtualenv venv
 > .\venv\Scripts\activate
@@ -20,12 +20,12 @@ WINDOWS:
 
 Luego, se instalan las dependencias usando pip.
 
-UNIX:
+GNU/Linux o MacOS:
 ```
 $ (venv) python3 -m pip install -r requirements.txt
 ```
 
-WINDOWS:
+Windows:
 ```
 (venv) > pip install -r requirements.txt
 ```
@@ -34,13 +34,13 @@ WINDOWS:
 
 Y finalmente, ejecutamos la app de Flask.
 
-UNIX:
+GNU/Linux o MacOS:
 ```
 $ (venv) export FLASK_APP=app.py
 $ (venv) flask run
 ```
 
-WINDOWS:
+Windows:
 ```
 (venv) > flask run
 ```
@@ -51,12 +51,12 @@ Ingresa a la dirección que te indica la terminal para ver la aplicación.
 
 Para desactivar el entorno virtual, ejecuta el siguiente comando:
 
-UNIX:
+GNU/Linux o MacOS:
 ```
 $ (venv) deactivate
 ```
 
-WINDOWS:
+Windows:
 ```
 (venv) > deactivate
 ```
