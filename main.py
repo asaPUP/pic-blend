@@ -6,4 +6,4 @@ app = Flask(__name__)
 # Path: /
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return "Bienvenido al sistemin!"
