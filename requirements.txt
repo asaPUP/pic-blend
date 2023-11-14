@@ -5,8 +5,8 @@ charset-normalizer==3.3.2
 click==8.1.7
 coloredlogs==15.0.1
 Flask==3.0.0
-Flask-FontAwesome==0.1.5
 flatbuffers==23.5.26
+Font-Awesome-Flask==0.1.2
 humanfriendly==10.0
 idna==3.4
 imageio==2.31.5
