@@ -14,8 +14,8 @@ $ source ./venv/bin/activate
 
 Windows:
 ```
-> virtualenv venv
-> .\venv\Scripts\activate
+virtualenv venv
+.\venv\Scripts\activate
 ```
 
 Luego, se instalan las dependencias usando pip.
@@ -53,10 +53,10 @@ Para desactivar el entorno virtual, ejecuta el siguiente comando:
 
 GNU/Linux o MacOS:
 ```
-$ (venv) deactivate
+$ deactivate
 ```
 
 Windows:
 ```
-(venv) > deactivate
+deactivate
 ```
