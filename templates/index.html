@@ -2,6 +2,10 @@
 
 {% block title %} Inicio  {% endblock %}
 
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='index.css')}}">
+{% endblock %}
+
 {% block body %}
 <header id="main-page-header">
     <h1>SISTEMIN</h1>

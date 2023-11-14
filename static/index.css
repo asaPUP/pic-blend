@@ -1,0 +1,57 @@
+body {
+    background: #000;
+    color: white;
+    text-align: center;
+}
+
+body::after {
+    content: "";
+    background-image: url('./img/index_background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+
+    opacity: 0.5;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1; 
+}
+
+#main-page-header {
+    margin-top: 10%;
+    min-height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#main-page-header {
+    font-size: 2vw;
+    letter-spacing: 1.5px;
+}
+
+#main-page-options {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#main-page-options ul li {
+    list-style: none;
+    padding: 10px;
+}
+
+#main-page-options ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 2vw;
+}
+
+#main-page-options ul li span {
+    padding-left: 10px;
+    padding-right: 10px;
+}
