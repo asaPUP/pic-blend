@@ -20,29 +20,29 @@ Windows:
 
 Luego, se instalan las dependencias usando pip.
 
-GNU/Linux o MacOS:
+GNU/Linux o MacOS (venv):
 ```
-$ (venv) python3 -m pip install -r requirements.txt
+$ python3 -m pip install -r requirements.txt
 ```
 
-Windows:
+Windows (venv):
 ```
-(venv) > pip install -r requirements.txt
+pip install -r requirements.txt
 ```
 
 ## Ejecución del proyecto
 
 Y finalmente, ejecutamos la app de Flask.
 
-GNU/Linux o MacOS:
+GNU/Linux o MacOS(venv):
 ```
-$ (venv) export FLASK_APP=app.py
-$ (venv) flask run
+$ export FLASK_APP=app.py
+$ flask run
 ```
 
-Windows:
+Windows(venv):
 ```
-(venv) > flask run
+flask run
 ```
 
 Ingresa a la dirección que te indica la terminal para ver la aplicación.
