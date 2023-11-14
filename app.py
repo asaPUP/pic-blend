@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for
 from PIL import Image, ImageOps
 from rembg import remove
 import sqlite3
@@ -9,11 +9,15 @@ app = Flask(__name__)
 
 
 @app.route('/', methods=['GET'])
-def index() -> None:
+def index():
     return render_template('index.html')
 
-@app.route('/procesar', methods=['POST'])
+@app.route('/procesar')
 def procesar_imagen():
+    return render_template('process_image.html')
+
+@app.route('/procesar-imagen', methods=['POST'])
+def _procesar_imagen():
     if 'imagen' in request.files:
         imagen = request.files['imagen']
         if imagen.filename != '':

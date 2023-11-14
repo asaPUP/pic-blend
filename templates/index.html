@@ -1,21 +1,15 @@
 {% extends "base.html" %}
 
-{% block title %} Inicio {% endblock %}
+{% block title %} Inicio  {% endblock %}
 
 {% block body %}
-    <h1>Cargar Imagen</h1>
-    <form action="/procesar" method="POST" enctype="multipart/form-data">
-        <input type="file" name="imagen">
-        <input type="submit" value="Procesar Imagen">
-    </form>
-
-
-    <h1>Imagen Procesada</h1>
-    <img src="{{ url_for('static', filename='imagen_procesada.png') }}" alt="Imagen Procesada">
-
-    <ul id="navigation">
-    {% for item in navigation %}
-        <li><a href="{{ item.href }}">{{ item.caption }}</a></li>
-    {% endfor %}
+<header id="main-page-header">
+    <h1>SISTEMIN</h1>
+</header>
+<section id="main-page-options">
+    <ul>
+        <li><a href="{{ url_for('procesar_imagen') }}"><span class="fa-solid fa-camera"></span>Crear Foto</a></li>
+        <li><a href="#">Ver Fotos <span class="fa-solid fa-image"></span></a></li>
     </ul>
+</section>
 {% endblock %}
