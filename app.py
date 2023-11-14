@@ -4,15 +4,13 @@ from rembg import remove
 import sqlite3
 import os
 
+
 app = Flask(__name__)
 
 
- 
-
-@app.route('/')
-def index():
-    return render_template('base.html')
-
+@app.route('/', methods=['GET'])
+def index() -> None:
+    return render_template('index.html')
 
 @app.route('/procesar', methods=['POST'])
 def procesar_imagen():
@@ -37,5 +35,7 @@ def procesar_imagen():
             return render_template('resultado.html')
     return "No se ha cargado una imagen válida."
 
-if __name__ == '__main__':
-    app.run()
+
+# Para iniciar el servidor de pruebas, usar:
+#  $ flask run
+#  $ flask --debug run (para iniciarlo en modo de depuración)

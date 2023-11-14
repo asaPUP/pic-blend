@@ -1,29 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es_MX">
 <head>
-    <title>My Webpage</title>
+    <meta charset="UTF-8">
+    <title>{% block title%}{% endblock %} - ISIS</title>
 </head>
-<body>    
-    
-    <h1>Cargar Imagen</h1>
-    <form action="/procesar" method="POST" enctype="multipart/form-data">
-        <input type="file" name="imagen">
-        <input type="submit" value="Procesar Imagen">
-    </form>
+<body>
+{% block body %}
 
-
-    <h1>Imagen Procesada</h1>
-    <img src="{{ url_for('static', filename='imagen_procesada.png') }}" alt="Imagen Procesada">
-
-    <ul id="navigation">
-    {% for item in navigation %}
-        <li><a href="{{ item.href }}">{{ item.caption }}</a></li>
-    {% endfor %}
-    </ul>
- 
-    <h1>My Webpage</h1>
-    {{ a_variable }}
-
-    {# a comment #}
+{% endblock %}
 </body>
 </html>
