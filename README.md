@@ -1,4 +1,4 @@
-<h1>Bienvenido a SISTEMIN jiji</h1>
+<h1>Bienvenido a SISTEMIN </h1>
 Proyecto para la materia de Ingenieria de Software.
 
 ## Instalación del proyecto
