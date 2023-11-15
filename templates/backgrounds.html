@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %} Galería {% endblock %}
+
+{% block body %}
+<br>
+<h3 class="oneline"> Galería </h3>
+<br>
+
+<!-- Se recorre la lista de imagenes y se muestra cada una -->
+{% for image in backgrounds %}
+<div class="oneline scroll">
+    <img class="" src="../{{ image.1 }}" alt="{{ image.0 }}.png" width="200">
+    <a class="btn" href="{{ url_for('procesar_imagen', background_id=image.0) }}">Procesar Imagen</a>
+</div>
+{% endfor %}
+<!--
+    Una vez se selecciona una imagen de la galeria, se envia el id de la imagen a procesar-imagen/id, donde id es el id de la imagen seleccionada en la galeria
+-->
+
+
+
+{% endblock %}

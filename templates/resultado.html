@@ -1,13 +1,10 @@
-<!DOCTYPE html>
-<html>
+{% extends "base.html" %}
 
-<head>
-    <title>Resultado</title>
-</head>
+{% block title %} Galería {% endblock %}
 
-<body>
-    <h1>Imagen Procesada</h1>
-    <!-- El template recibe como dato una tupla image = (id, relative_path), relative_path = static/uploads/{id}.png -->
-    <img src="../{{ image.1 }}" alt="{{ image.0 }}.png">
-
-</html>
+{% block body %}
+<h3>Imagen Procesada</h3>
+<br>
+<!-- El template recibe como dato una tupla image = (id, relative_path), relative_path = static/uploads/{id}.png -->
+<img src="../{{ image.1 }}" alt="{{ image.0 }}.png">
+{% endblock %}

@@ -4,23 +4,18 @@
 
 {% block body %}
 <br>
-    <h3 class="oneline"> Galería </h3> 
-    <br> 
-    <div>
-        <div class="oneline scroll">
-            <!-- <img class=""> -->
+<h3 class="oneline"> Galería </h3>
+<br>
 
-        </div>
-
-        <div class="oneline scroll ">
-
-             <!-- <img class="" > -->
-
-        </div>
-    </div>
-    <button class="btn" href="{{ url_for('procesar_imagen') }}"> Seleccionar </button>
-
+<!-- Se recorre la lista de imagenes y se muestra cada una -->
+{% for image in gallery %}
+<div class="oneline ">
+    <a target="_blank" href="../{{ image.1 }}">
+        <img class="" src="../{{ image.1 }}" alt="{{ image.0 }}.png" width="200">
+    </a>
 </div>
+<br><br>
+{% endfor %}
 
 
 

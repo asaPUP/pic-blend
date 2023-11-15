@@ -12,16 +12,43 @@ app = Flask(__name__)
 # Configuración de la carpeta de subida de archivos
 app.config['UPLOAD_FOLDER'] = os.path.join(current_dir, 'static/uploads')
 
+# Funcion para obtener las imagenes de background de la base de datos en una tupa (...) de tuplas (id, path)
+def get_backgrounds():
+    # Obtiene los fondos de la base de datos
+    conn = sqlite3.connect(database_path)
+    cursor = conn.cursor()
+    cursor.execute('SELECT * FROM background')
+    backgrounds = cursor.fetchall()
+    conn.close()
+
+    return backgrounds # backgrounds es una tupla de tuplas (id, path)
+
+def get_gallery():
+    # Obtiene las ultimas 20 imagenes generadas de la base de datos
+    conn = sqlite3.connect(database_path)
+    cursor = conn.cursor()
+    cursor.execute('SELECT * FROM generated ORDER BY id DESC LIMIT 20')
+    gallery = cursor.fetchall()
+    conn.close()
+
+    return gallery # gallery es una tupla de tuplas (id, path)
+
 @app.route('/', methods=['GET'])
 def index():
     return render_template('index.html')
 
 @app.route('/crear')
 def crear_imagen():
-    return render_template('galeria.html')
+    backgrounds = get_backgrounds()
+    return render_template('backgrounds.html', backgrounds=backgrounds)
+
+@app.route('/galeria')
+def galeria():
+    gallery = get_gallery()
+    return render_template('galeria.html', gallery=gallery)
 
 @app.route('/procesar/<int:background_id>')
-def procesar_imagen_background(background_id):
+def procesar_imagen(background_id):
     if background_id == None:
         return "No se ha seleccionado un fondo válido."
     
@@ -56,7 +83,7 @@ def _procesar_imagen():
 
     # Pega la imagen procesada sobre el fondo seleccionado, con un tamaño que no exceda el del fondo pero que mantenga la relación de aspecto
     background_id = request.form['background_id']
-    background_path = os.path.join(current_dir, f'static/img/backgrounds/{background_id}.png')
+    background_path = os.path.join(current_dir, f'static/img/backgrounds/{background_id}.jpg')
 
     # Abre la imagen de fondo y obtiene sus dimensiones
     background_image = Image.open(background_path)
@@ -65,12 +92,17 @@ def _procesar_imagen():
     # Obtiene las dimensiones de la imagen de salida (la que se obtiene al eliminar el fondo)
     output_width, output_height = output_image.size
     
-    # Redimensiona la imagen de salida si es necesario
-    if output_width > background_width or output_height > background_height: # Si la imagen de salida excede el tamaño del fondo
-        output_image.thumbnail((background_width, background_height), Image.ANTIALIAS) # Redimensiona la imagen de salida para que no exceda el tamaño del fondo
+    # Redimensiona la imagen de salida si es necesario, dejando un margen de 10px en cada lado
+    if output_width > background_width:
+        output_image.thumbnail((background_width - 20, background_height), Image.LANCZOS)
+        output_width, output_height = output_image.size
 
-    # Pega la imagen de salida sobre el fondo en el centro
-    background_image.paste(output_image, (int((background_width - output_image.size[0]) / 2), int((background_height - output_image.size[1]) / 2)))
+    if output_height > background_height:
+        output_image.thumbnail((background_width, background_height - 20), Image.LANCZOS)
+        output_width, output_height = output_image.size
+
+    # Pega la imagen de salida que tiene el fondo transparente sobre la imagen de fondo, centrada, y dejando 10px de margen
+    background_image.paste(output_image, (int((background_width - output_image.size[0]) / 2), int((background_height - output_image.size[1]) / 2)), output_image)
 
     # Guarda la imagen compuesta en un archivo en la carpeta de subida de archivos 'static/uploads'
     output_path = os.path.join(app.config['UPLOAD_FOLDER'], f'{uploaded_id}.png')
