@@ -29,6 +29,7 @@ p {
     height: auto;
     vertical-align: middle;
     border-radius: 5px;
+    width: 30vw;
 }
 
 .image-gallery li div a {

@@ -1,0 +1,13 @@
+div a {
+    width: 35vw;
+    height: 25vw;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+}
+
+div a img {
+    display: block;
+    position: relative;
+    object-fit: cover;
+}
