@@ -5,15 +5,12 @@
     margin: 0;
     font-family: 'Lexend', sans-serif;
     font-weight: 400;
-    outline: pink solid 1px;
+    /*outline: pink solid 1px;*/
 }
 
 body {
-   /* background-color: #000000;*/
-}
-
-h1, h2, h3, h4, h5, h6 {
-    color: #ffffff;
+   background-color: #000000;
+   color: #ffffff;
 }
 
 h1 { /* Titulo Grande */
