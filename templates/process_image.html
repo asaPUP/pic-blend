@@ -7,6 +7,7 @@
 <h3 class="oneline">Cargar Imagen</h3>
 <br>
 <form class="oneline" action="/procesar-imagen" method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="background_id" value="{{ background_id }}">
     <input class="btn" type="file" name="imagen">
     <input class="btn" type="submit" value="Procesar Imagen">
 </form>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,15 +11,17 @@
     <!-- font awesome  -->
     <script src="https://kit.fontawesome.com/8376d6d866.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
     <header id="main-page-header">
         <h1>SISTEMIN</h1>
     </header>
     <section id="main-page-options">
         <ul>
-            <li><a href="{{ url_for('procesar_imagen') }}"><span class="fa-solid fa-camera"></span>Crear Foto</a></li>
+            <li><a href="{{ url_for('crear_imagen') }}"><span class="fa-solid fa-camera"></span>Crear Foto</a></li>
             <li><a href="#">Ver Fotos <span class="fa-solid fa-image"></span></a></li>
         </ul>
     </section>
 </body>
+
 </html>
