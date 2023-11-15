@@ -6,9 +6,20 @@
 <br>
 <h3 class="oneline">Cargar Imagen</h3>
 <br>
-<form class="oneline" action="/procesar-imagen" method="POST" enctype="multipart/form-data">
-    <input type="hidden" name="background_id" value="{{ background_id }}">
-    <input class="btn" type="file" name="imagen">
-    <input class="btn" type="submit" value="Procesar Imagen">
-</form>
+
+<div class="oneline">
+    <form class="oneline" action="/procesar-imagen" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="background_id" value="{{ background_id }}">
+        <input class="btn" type="file" name="imagen">
+        <input class="btn" type="submit" value="Procesar Imagen">
+    </form>
+</div>
+<br><br>
+<div class="oneline">
+    <h3>Fondo seleccionado</h3>
+</div>
+<br>
+<div class="oneline">
+    <img src="../static/img/backgrounds/{{ background_id }}.jpg" alt="Fondo seleccionado" height="300">
+</div>
 {% endblock %}
