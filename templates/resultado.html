@@ -6,7 +6,7 @@
 <!--Para generar el código QR, se utiliza la librería qrcodejs-->
 <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
 
-<h3>Imagen Procesada</h3>
+<h3 class="oneline">Imagen Procesada</h3>
 <br>
 <!-- El template recibe como dato una tupla image = (id, relative_path), relative_path = static/uploads/{id}.png -->
 <div class="oneline">
@@ -35,6 +35,8 @@
         {{ request.url_root }}resultado/{{ image.0 }}
     </a>
 </div>
+<
+<button class="btn"  href="{{ url_for('static', filename='index.css')}}"> Volver </button>
 
 <br>
 <br>

@@ -8,8 +8,8 @@
 <br>
 
 <div class="oneline">
-    <button class="btn" onclick=""> Usar imagen </button>   
-    <button class="btn" onclick=""> Seleccionar otra </button>   
+    <button class="btn" href="{{ url_for('resultado') }}"> Usar imagen </button>   
+    <button class="btn" href="{{ url_for('procesar_imagen') }}"> Seleccionar otra </button>   
 </div>
 
 {% endblock %}
