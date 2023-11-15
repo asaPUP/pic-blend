@@ -2,15 +2,11 @@
 
 {% block title %} Inicio {% endblock %}
 
-{% block styles %}
-<link rel="stylesheet" href="{{ url_for('static', filename='base.css')}}">
-{% endblock %}
-
 {% block body %}
     <h3>Cargar Imagen</h3>
     <form action="/procesar-imagen" method="POST" enctype="multipart/form-data">
-        <input type="file" name="imagen">
-        <input type="submit" value="Procesar Imagen">
+        <input class="btn" type="file" name="imagen">
+        <input class="btn" type="submit" value="Procesar Imagen">
     </form>
 
 
