@@ -6,9 +6,20 @@
 <br>
     <h3 class="oneline">Cargar Imagen</h3>
     <br>
-    <form class="oneline" action="/procesar-imagen" method="POST" enctype="multipart/form-data">
-        <input class="btn" type="file" name="imagen">
-        <input class="btn" type="submit" value="Procesar Imagen">
+    <form action="/procesar-imagen" method="POST" enctype="multipart/form-data">
+        
+        <div class="oneline" > 
+            <button class="btn" type="submit">Tomar foto grafía</button>
+            <p> ó  Selecionar tú fotografía</p> <input class="btn" type="file" name="imagen">
+            
+        </div>
+        <br>    <br>    <br>
+
+        <div class="oneline"> 
+
+            <input class="btn" type="submit" value="Procesar Imagen">
+
+        </div>
     </form>
 
     <br>
