@@ -2,6 +2,10 @@
 
 {% block title %} Galería {% endblock %}
 
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/galeria.css') }}">
+{% endblock %}
+
 {% block body %}
 <br>
 <h3 class="oneline"> Galería </h3>
@@ -11,7 +15,7 @@
 {% for image in gallery %}
 <div class="oneline">
     <a target="_blank" href="../{{ image.1 }}">
-        <img class="imgfoto" src="../{{ image.1 }}" alt="{{ image.0 }}.png" width="200">
+        <img  src="../{{ image.1 }}" alt="{{ image.0 }}.png">
     </a>
 </div>
 <br><br>
