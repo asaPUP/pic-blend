@@ -28,9 +28,7 @@ h2 {
 
 h3 {
     font-weight: 400;/* grosor: normal */
-    font-size: 10px;
-    color: blueviolet;
-    background-color: aqua;
+    font-size: 40px;
 }
 
 h4 {
@@ -48,9 +46,15 @@ h5 {
 .btn {
     background-color:rgb(73, 73, 73);
     border-radius: 10px;
-    padding: 10px 20px;
-    font-size: 20px;
-    font-weight: 500;
+    padding: 10px;
     text-decoration: none;
     box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+/* Divs */
+
+.oneline {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
