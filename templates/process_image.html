@@ -28,6 +28,9 @@
      <h3 class="oneline">Imagen Procesada</h3>
     <br>
     <div class="oneline"><img src="{{ url_for('static', filename='imagen_procesada.png') }}" alt="Imagen Procesada"></div>
+    <br>
+    <button class="btn" type="submit" href="{{ url_for('resultado') }}" onclick="">Usar fotografía</button>
+
     <ul id="navigation">
     {% for item in navigation %}
         <li><a href="{{ item.href }}">{{ item.caption }}</a></li>

@@ -10,9 +10,9 @@
     <br>
 
     <div class="oneline">
-        <button class="btn" type="submit" onclick="">Cambiar Fondo</button>
-        <button class="btn" type="submit" onclick="">Cambiar Foto</button>
-        <button class="btn" type="submit" onclick="">Recibir en e-mail</button>
+        <button class="btn" type="submit" href="{{ url_for('galeria') }}" onclick="">Cambiar Fondo</button>
+        <button class="btn" type="submit" href="{{ url_for('index') }}" onclick="">Cambiar Foto</button>
+        <button class="btn" type="submit" href="{{ url_for('envio') }}" onclick="">Recibir en e-mail</button>
     </div>
     
 {% endblock %}
