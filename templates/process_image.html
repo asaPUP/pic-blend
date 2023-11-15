@@ -4,36 +4,10 @@
 
 {% block body %}
 <br>
-    <h3 class="oneline">Cargar Imagen</h3>
-    <br>
-    <form action="/procesar-imagen" method="POST" enctype="multipart/form-data">
-        
-        <div class="oneline" > 
-            <button class="btn" type="submit">Tomar foto grafía</button>
-            <p> ó  Selecionar tú fotografía</p> <input class="btn" type="file" name="imagen">
-            
-        </div>
-        <br>    <br>    <br>
-
-        <div class="oneline"> 
-
-            <input class="btn" type="submit" value="Procesar Imagen">
-
-        </div>
-    </form>
-
-    <br>
-    <br>
-
-     <h3 class="oneline">Imagen Procesada</h3>
-    <br>
-    <div class="oneline"><img src="{{ url_for('static', filename='imagen_procesada.png') }}" alt="Imagen Procesada"></div>
-    <br>
-    <button class="btn" type="submit" href="{{ url_for('resultado') }}" onclick="">Usar fotografía</button>
-
-    <ul id="navigation">
-    {% for item in navigation %}
-        <li><a href="{{ item.href }}">{{ item.caption }}</a></li>
-    {% endfor %}
-    </ul>
+<h3 class="oneline">Cargar Imagen</h3>
+<br>
+<form class="oneline" action="/procesar-imagen" method="POST" enctype="multipart/form-data">
+    <input class="btn" type="file" name="imagen">
+    <input class="btn" type="submit" value="Procesar Imagen">
+</form>
 {% endblock %}
