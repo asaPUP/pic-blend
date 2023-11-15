@@ -1,10 +1,18 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Resultado</title>
-    </head>
-    <body>
-        <h1>Imagen Procesada</h1>
-    <img src="{{ url_for('static', filename='imagen_procesada.png') }}" alt="Imagen Procesada">
-    </body>
-</html> 
+{% extends "base.html" %}
+
+{% block title %} Procesar Imágen {% endblock %}
+
+{% block body %}
+
+    <h3 class="oneline"> Resultado </h3>
+    <br>
+     <img src="" id="" alt="">
+    <br>
+
+    <div class="oneline">
+        <button class="btn" type="submit" onclick="">Cambiar Fondo</button>
+        <button class="btn" type="submit" onclick="">Cambiar Foto</button>
+        <button class="btn" type="submit" onclick="">Recibir en e-mail</button>
+    </div>
+    
+{% endblock %}
