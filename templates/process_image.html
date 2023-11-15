@@ -3,6 +3,7 @@
 {% block title %} Inicio {% endblock %}
 
 {% block body %}
+<br>
     <h3 class="oneline">Cargar Imagen</h3>
     <br>
     <form class="oneline" action="/procesar-imagen" method="POST" enctype="multipart/form-data">
@@ -15,8 +16,7 @@
 
      <h3 class="oneline">Imagen Procesada</h3>
     <br>
-    <img src="{{ url_for('static', filename='imagen_procesada.png') }}" alt="Imagen Procesada">
-
+    <div class="oneline"><img src="{{ url_for('static', filename='imagen_procesada.png') }}" alt="Imagen Procesada"></div>
     <ul id="navigation">
     {% for item in navigation %}
         <li><a href="{{ item.href }}">{{ item.caption }}</a></li>
