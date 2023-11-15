@@ -1,0 +1,35 @@
+body {
+    flex-direction: column;
+}
+
+h3 {
+    text-align: center;
+}
+
+img {
+    width: 30vw;
+}
+
+
+#main-content {
+    display: flex;
+}
+
+#image-section {
+    height: 40vw;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#qr-code-section {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#qr-code-section > * {
+    margin-top: 10px;
+}

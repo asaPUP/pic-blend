@@ -16,7 +16,7 @@ body {
 
 body::after {
     content: "";
-    background-image: url('./img/index_background.jpg');
+    background-image: url('../img/index_background.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
