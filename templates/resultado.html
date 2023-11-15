@@ -3,8 +3,50 @@
 {% block title %} Galería {% endblock %}
 
 {% block body %}
+<!--Para generar el código QR, se utiliza la librería qrcodejs-->
+<script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+
 <h3>Imagen Procesada</h3>
 <br>
 <!-- El template recibe como dato una tupla image = (id, relative_path), relative_path = static/uploads/{id}.png -->
-<img src="../{{ image.1 }}" alt="{{ image.0 }}.png">
+<div class="oneline">
+    <a target="_blank" href="../{{ image.1 }}">
+        <img src="../{{ image.1 }}" alt="{{ image.0 }}.png" width="200">
+    </a>
+</div>
+<br>
+<div class="oneline">
+    <a href="../{{ image.1 }}" class="btn" target="_blank" download>
+        Descargar Imagen
+    </a>
+</div>
+<br>
+<div class="oneline">
+    <p>
+        Código QR de Imagen:
+    </p>
+</div>
+<br>
+<div class="oneline" id="qrcode">
+</div>
+<br>
+<div class="oneline">
+    <a href="{{ request.url_root }}resultado/{{ image.0 }}" id="url">
+        {{ request.url_root }}resultado/{{ image.0 }}
+    </a>
+</div>
+
+<br>
+<br>
+
+<script>
+    var qrcode = new QRCode(document.getElementById("qrcode"), {
+        text: "{{ request.url_root }}resultado/{{ image.0 }}",
+        width: 300,
+        height: 300,
+        colorDark: "#000000",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.H
+    });
+</script>
 {% endblock %}

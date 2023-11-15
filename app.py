@@ -3,6 +3,7 @@ from PIL import Image, ImageOps
 from rembg import remove
 import sqlite3
 import os
+import segno
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 database_path = os.path.join(current_dir, 'database/sistemin.db')
@@ -11,6 +12,11 @@ app = Flask(__name__)
 
 # Configuración de la carpeta de subida de archivos
 app.config['UPLOAD_FOLDER'] = os.path.join(current_dir, 'static/uploads')
+
+# Funcion para obtener el codigo QR de una URL
+def get_qr(url):
+    qr = segno.make(url)
+    qr.save(f'{url}', scale=10, border=0)
 
 # Funcion para obtener las imagenes de background de la base de datos en una tupa (...) de tuplas (id, path)
 def get_backgrounds():
