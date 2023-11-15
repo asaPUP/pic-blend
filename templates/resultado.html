@@ -10,4 +10,6 @@
     <!-- El template recibe como dato una tupla image = (id, relative_path), relative_path = static/uploads/{id}.png -->
     <img src="../{{ image.1 }}" alt="{{ image.0 }}.png">
 
+    <button class="btn" href="{{ url_for('envio') }}"> Volver </button>
+
 </html>
