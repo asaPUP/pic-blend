@@ -46,11 +46,6 @@ a {
     text-decoration: none;
 }
 
-img {
-    width: auto;
-    height: auto;
-}
-
 input {
     background-color: #fefefe;
     border-radius: 60px;
@@ -74,9 +69,10 @@ header {
 
 .imgfoto {
     width: 100px;
-    height: 100px;
+    height: auto;
     border-radius: 50%;
     object-fit: cover;
+    border: #131313;
 }
 
 /*botones*/
