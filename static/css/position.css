@@ -1,0 +1,27 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+#instructions {
+    line-height: 100px;
+    text-align: center;
+}
+
+#positioning-section {
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+}
+
+#positioning-section #up_image {
+    height: 120px;
+    width: auto;
+    position: absolute;
+    z-index: 1;
+}
+
+#positioning-section #selected_bg {
+    width: 60%;
+    position: relative;
+}

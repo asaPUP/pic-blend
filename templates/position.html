@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %} Posicionar Imágenes {% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/position.css')}}">
+{% endblock %}
+
+{% block body %}
+<section id="instructions">
+    <p>
+        Arrastra tu imagen seleccionada para posicionarla sobre el fondo.
+    </p>
+</section>
+<section id="positioning-section">
+    <img id="up_image" src="../static/uploads/tmp/{{ session['up_image_filename'] }}" alt="uploaded image" width="200">
+    <img id="selected_bg" src="../static/img/backgrounds/{{bg_id}}.jpg" alt="selected background" width="200">
+</section>
+{% endblock %}
