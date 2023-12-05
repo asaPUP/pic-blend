@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, abort
 from PIL import Image, ImageOps
 from rembg import remove
 import sqlite3
@@ -31,17 +31,17 @@ def galeria():
     return render_template('galeria.html', gallery=gallery)
 
 @app.route('/procesar/<int:background_id>')
-def procesar_imagen(background_id):
+def procesar_imagen(background_id):                 # NOTA: ESTO DEBERÍA SER CAMBIADO A "SUBIR IMAGEN" O ALGO ASÍ
     if background_id == None:
         return "No se ha seleccionado un fondo válido."
     
     return render_template('process_image.html', background_id=background_id)
 
-@app.route('/procesar-imagen', methods=['GET', 'POST'])
-def _procesar_imagen():
+@app.route('/procesar-imagen', methods=['POST'])
+def posicionar_imagen():
     if 'imagen' not in request.files:
         return "No se ha cargado una imagen válida."
-    
+
     uploaded_image = request.files['imagen']
     img_filename = secure_filename(uploaded_image.filename)
     uploaded_image.save(os.path.join(app.config['UPLOAD_FOLDER'], f'tmp/{img_filename}'))
@@ -51,13 +51,16 @@ def _procesar_imagen():
 
     return render_template('position.html', bg_id=selected_bg_id)
 
-    # if imagen.filename == '':
-    #     return "No se ha cargado una imagen válida."
-    
-    # uploaded_id = generate_image(app, request, imagen)
+@app.route('/process-image', methods=['POST'])
+def process_image():
+    temp_images_directory = os.path.join(app.config['UPLOAD_FOLDER'] + '/tmp')
 
-    # return redirect(url_for('resultado', id=uploaded_id))
+    if os.listdir(temp_images_directory) == None:
+        return "404 not found"
 
+    uploaded_id = generate_image(app, request, session)
+
+    return redirect(url_for('resultado', id=uploaded_id))
 
 @app.route('/resultado/<int:id>')
 def resultado(id):
