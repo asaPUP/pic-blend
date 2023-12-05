@@ -6,7 +6,7 @@ from rembg import remove
 current_dir = os.path.dirname(os.path.abspath(__file__))
 database_path = os.path.join(current_dir, 'database/sistemin.db')
 
-# Funcion para obtener las imagenes de background de la base de datos en una tupa (...) de tuplas (id, path)
+# Funcion para obtener las imagenes de background de la base de datos en una tupla (...) de tuplas (id, path)
 def get_backgrounds():
     # Obtiene los fondos de la base de datos
     conn = sqlite3.connect(database_path)
@@ -27,8 +27,8 @@ def get_gallery():
 
     return gallery # gallery es una tupla de tuplas (id, path)
 
-def generate_image(app, request, imagen):
-        # Asigna un nombre único a la imagen cargada, obtenido del id en la base de datos
+def generate_image(app, request, session):
+    # Asigna un nombre único a la imagen cargada, obtenido del id en la base de datos
     conn = sqlite3.connect(database_path)
     cursor = conn.cursor()
     cursor.execute('SELECT MAX(id) FROM generated')
@@ -37,16 +37,17 @@ def generate_image(app, request, imagen):
         uploaded_id = 0
     uploaded_id += 1 # Incrementa el id para la nueva imagen
 
-    # Guarda la imagen cargada en un archivo temporal
-    temp_path = os.path.join(app.config['UPLOAD_FOLDER'], f'temp{uploaded_id}.png')
-    imagen.save(temp_path)
+    # Guarda la imagen cargada en un archivo temporal (AHORA LA IMAGEN YA ESTÁ CARGADA DESDE ANTES)
+    #temp_path = os.path.join(app.config['UPLOAD_FOLDER'], f'temp{uploaded_id}.png')
+    #imagen.save(temp_path)
 
     # Procesa la imagen para eliminar el fondo
+    temp_path = os.path.join(app.config['UPLOAD_FOLDER'], f"tmp/{session['up_image_filename']}")
     input_image = Image.open(temp_path)
     output_image = remove(input_image)
 
     # Pega la imagen procesada sobre el fondo seleccionado, con un tamaño que no exceda el del fondo pero que mantenga la relación de aspecto
-    background_id = request.form['background_id']
+    background_id = request.form['background-id']
     background_path = os.path.join(current_dir, f'static/img/backgrounds/{background_id}.jpg')
 
     # Abre la imagen de fondo y obtiene sus dimensiones
@@ -66,7 +67,8 @@ def generate_image(app, request, imagen):
         output_width, output_height = output_image.size
 
     # Pega la imagen de salida que tiene el fondo transparente sobre la imagen de fondo, centrada, y dejando 10px de margen
-    background_image.paste(output_image, (int((background_width - output_image.size[0]) / 2), int((background_height - output_image.size[1]) / 2)), output_image)
+    #background_image.paste(output_image, (int((background_width - output_image.size[0]) / 2), int((background_height - output_image.size[1]) / 2)), output_image)
+    background_image.paste(output_image, (int(request.form['x']), int(request.form['y'])), output_image)
 
     # Guarda la imagen compuesta en un archivo en la carpeta de subida de archivos 'static/uploads'
     output_path = os.path.join(app.config['UPLOAD_FOLDER'], f'{uploaded_id}.png')

@@ -1,14 +1,17 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session, abort
 from PIL import Image, ImageOps
 from rembg import remove
 import sqlite3
 import os
 from functions import get_backgrounds, get_gallery, generate_image
+from werkzeug.utils import secure_filename
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 database_path = os.path.join(current_dir, 'database/sistemin.db')
 
 app = Flask(__name__)
+
+app.secret_key = 'Cambiar esta llave si nos vamos a producción en algún punto jjj'
 
 # Configuración de la carpeta de subida de archivos
 app.config['UPLOAD_FOLDER'] = os.path.join(current_dir, 'static/uploads')
@@ -28,23 +31,34 @@ def galeria():
     return render_template('galeria.html', gallery=gallery)
 
 @app.route('/procesar/<int:background_id>')
-def procesar_imagen(background_id):
+def procesar_imagen(background_id):                 # NOTA: ESTO DEBERÍA SER CAMBIADO A "SUBIR IMAGEN" O ALGO ASÍ
     if background_id == None:
         return "No se ha seleccionado un fondo válido."
     
     return render_template('process_image.html', background_id=background_id)
 
 @app.route('/procesar-imagen', methods=['POST'])
-def _procesar_imagen():
+def posicionar_imagen():
     if 'imagen' not in request.files:
         return "No se ha cargado una imagen válida."
-    
-    imagen = request.files['imagen']
 
-    if imagen.filename == '':
-        return "No se ha cargado una imagen válida."
-    
-    uploaded_id = generate_image(app, request, imagen)
+    uploaded_image = request.files['imagen']
+    img_filename = secure_filename(uploaded_image.filename)
+    uploaded_image.save(os.path.join(app.config['UPLOAD_FOLDER'], f'tmp/{img_filename}'))
+
+    session['up_image_filename'] = img_filename
+    selected_bg_id = request.form['background_id']
+
+    return render_template('position.html', bg_id=selected_bg_id)
+
+@app.route('/process-image', methods=['POST'])
+def process_image():
+    temp_images_directory = os.path.join(app.config['UPLOAD_FOLDER'] + '/tmp')
+
+    if os.listdir(temp_images_directory) == None:
+        return "404 not found"
+
+    uploaded_id = generate_image(app, request, session)
 
     return redirect(url_for('resultado', id=uploaded_id))
 

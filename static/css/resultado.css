@@ -8,11 +8,12 @@ h3 {
 
 img {
     width: 30vw;
+    overflow: hidden;
 }
-
 
 #main-content {
     display: flex;
+    margin-top: 6%;
 }
 
 #image-section {
