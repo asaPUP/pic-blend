@@ -1,5 +1,7 @@
 import sqlite3
 import os
+import sys
+import subprocess
 from PIL import Image, ImageOps
 from rembg import remove
 
@@ -85,3 +87,11 @@ def generate_image(app, request, session):
     os.remove(temp_path)
 
     return uploaded_id
+
+def send_email_message(receiver_email, url): # receiver_email debe tener el formato "nombre@dominio.com"
+    python_interpreter = os.path.join(os.getcwd(), 'venv', 'bin', 'python3')
+    subprocess.run([python_interpreter, 'emailmessage.py', receiver_email, url])
+
+def send_whatsapp_message(phone_number, url): # phone?number debe tener el formato "+00 123 456 7890"
+    python_interpreter = os.path.join(os.getcwd(), 'venv', 'bin', 'python3')
+    subprocess.run([python_interpreter, 'whatsappmessage.py', phone_number, url])

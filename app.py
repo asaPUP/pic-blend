@@ -46,6 +46,7 @@ def posicionar_imagen():
     img_filename = secure_filename(uploaded_image.filename)
     uploaded_image.save(os.path.join(app.config['UPLOAD_FOLDER'], f'tmp/{img_filename}'))
 
+
     session['up_image_filename'] = img_filename
     selected_bg_id = request.form['background_id']
 
@@ -78,3 +79,4 @@ def resultado(id):
 # Para iniciar el servidor de pruebas, usar:
 #  $ flask run
 #  $ flask --debug run (para iniciarlo en modo de depuración)
+#  IMPORTANTE: Ejecutar antes de todo en el server "$ sudo xhost +" para permitir el acceso a la pantalla con pywhatkit
