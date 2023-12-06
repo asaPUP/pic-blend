@@ -46,6 +46,7 @@ def generate_image(app, request, session):
     # Procesa la imagen para eliminar el fondo
     temp_path = os.path.join(app.config['UPLOAD_FOLDER'], f"tmp/{session['up_image_filename']}")
     input_image = Image.open(temp_path)
+    input_image = input_image.resize((100, 100))
     output_image = remove(input_image)
 
     # Pega la imagen procesada sobre el fondo seleccionado, con un tamaño que no exceda el del fondo pero que mantenga la relación de aspecto
@@ -60,13 +61,13 @@ def generate_image(app, request, session):
     output_width, output_height = output_image.size
     
     # Redimensiona la imagen de salida si es necesario, dejando un margen de 10px en cada lado
-    if output_width > background_width:
-        output_image.thumbnail((background_width - 20, background_height), Image.LANCZOS)
-        output_width, output_height = output_image.size
+    # if output_width > background_width:
+    #     output_image.thumbnail((background_width - 20, background_height), Image.LANCZOS)
+    #     output_width, output_height = output_image.size
 
-    if output_height > background_height:
-        output_image.thumbnail((background_width, background_height - 20), Image.LANCZOS)
-        output_width, output_height = output_image.size
+    # if output_height > background_height:
+    #     output_image.thumbnail((background_width, background_height - 20), Image.LANCZOS)
+    #     output_width, output_height = output_image.size
 
     # Pega la imagen de salida que tiene el fondo transparente sobre la imagen de fondo, centrada, y dejando 10px de margen
     #background_image.paste(output_image, (int((background_width - output_image.size[0]) / 2), int((background_height - output_image.size[1]) / 2)), output_image)
