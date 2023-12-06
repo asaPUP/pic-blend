@@ -46,7 +46,7 @@ def generate_image(app, request, session):
     # Procesa la imagen para eliminar el fondo
     temp_path = os.path.join(app.config['UPLOAD_FOLDER'], f"tmp/{session['up_image_filename']}")
     input_image = Image.open(temp_path)
-    input_image = input_image.resize((100, 100))
+    input_image = input_image.resize((200, 200))
     output_image = remove(input_image)
 
     # Pega la imagen procesada sobre el fondo seleccionado, con un tamaño que no exceda el del fondo pero que mantenga la relación de aspecto
@@ -71,7 +71,13 @@ def generate_image(app, request, session):
 
     # Pega la imagen de salida que tiene el fondo transparente sobre la imagen de fondo, centrada, y dejando 10px de margen
     #background_image.paste(output_image, (int((background_width - output_image.size[0]) / 2), int((background_height - output_image.size[1]) / 2)), output_image)
-    background_image.paste(output_image, (int(request.form['x']), int(request.form['y'])), output_image)
+    x, y = (request.form['x'], request.form['y'])
+    x = int(x)
+    y = int(y)
+    if (x == 0 and y == 0):
+        background_image.paste(output_image, (x, y), output_image)
+    else:
+        background_image.paste(output_image, (x + 200, y + 200), output_image)
 
     # Guarda la imagen compuesta en un archivo en la carpeta de subida de archivos 'static/uploads'
     output_path = os.path.join(app.config['UPLOAD_FOLDER'], f'{uploaded_id}.png')
