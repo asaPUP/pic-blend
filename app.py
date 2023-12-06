@@ -3,8 +3,9 @@ from PIL import Image, ImageOps
 from rembg import remove
 import sqlite3
 import os
-from functions import get_backgrounds, get_gallery, generate_image
+from functions import get_backgrounds, get_gallery, generate_image, send_email_message, send_whatsapp_message
 from werkzeug.utils import secure_filename
+import threading
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 database_path = os.path.join(current_dir, 'database/sistemin.db')
@@ -75,6 +76,18 @@ def resultado(id):
         return "No se ha encontrado la imagen solicitada."
     
     return render_template('resultado.html', image=image) # image es una tupla con los datos de la imagen (id, relative_path)
+
+@app.route('/enviar/<int:id>')
+def enviar_correo(id):
+    receiver_email = request.args.get('email')
+    url = request.url_root + "resultado/" + str(id)
+
+    # Enviar correo electrónico en un hilo separado
+    thread = threading.Thread(target=send_email_message, args=(receiver_email, url))
+    thread.start()
+
+    # Redirigir a la página de resultado
+    return redirect(url_for('resultado', id=id))
 
 # Para iniciar el servidor de pruebas, usar:
 #  $ flask run

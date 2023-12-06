@@ -96,6 +96,13 @@ def generate_image(app, request, session):
     return uploaded_id
 
 def send_email_message(receiver_email, url): # receiver_email debe tener el formato "nombre@dominio.com"
+    print("Entro a la funcion send_email_message")
+
+    print(f"Receptor: {receiver_email}")
+    print(f"URL: {url}")
+
+    print("Saliendo de la funcion send_email_message")
+
     python_interpreter = os.path.join(os.getcwd(), 'venv', 'bin', 'python3')
     subprocess.run([python_interpreter, 'emailmessage.py', receiver_email, url])
 
