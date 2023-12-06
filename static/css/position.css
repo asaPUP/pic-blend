@@ -14,7 +14,7 @@ body {
 }
 
 #instructions {
-    line-height: 100px;
+    line-height: 50px;
     text-align: center;
     font-size: 2vw;
 }
@@ -49,4 +49,10 @@ body {
     text-decoration: none;
     box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
     margin-bottom: 50px;
+}
+
+#message {
+    display: block;
+    color: rgb(156, 54, 54);
+    font-size: 1.5vw;
 }
