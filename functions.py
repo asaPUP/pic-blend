@@ -54,8 +54,10 @@ def generate_image(app, request, session):
 
     # Abre la imagen de fondo y obtiene sus dimensiones
     background_image = Image.open(background_path)
-
-    background_image.thumbnail((500, 500), Image.Resampling.LANCZOS)
+    bg_width, bg_height = background_image.size
+    if (bg_width < 500 and bg_height < 500):
+        background_image.thumbnail((500, 500), Image.Resampling.LANCZOS)
+    
     background_width, background_height = background_image.size
     output_image = remove(input_image)
     output_image.thumbnail((background_width / 4, background_height / 4), Image.Resampling.LANCZOS)
@@ -74,11 +76,15 @@ def generate_image(app, request, session):
 
     # Pega la imagen de salida que tiene el fondo transparente sobre la imagen de fondo, centrada, y dejando 10px de margen
     #background_image.paste(output_image, (int((background_width - output_image.size[0]) / 2), int((background_height - output_image.size[1]) / 2)), output_image)
-    x, y = (request.form['x'], request.form['y'])
-    x = int(x)
-    y = int(y)
+    x, y = (int(request.form['x']), int(request.form['y']))
 
-    background_image.paste(output_image, (int(x // 1.6), int(y // 1.6)), output_image)
+    if (bg_width < 500 and bg_height < 500):
+        background_image.paste(output_image, (int(x / 1.7), int(y / 1.7)), output_image)
+    elif (abs(bg_width - bg_height) < 50):
+        background_image.paste(output_image, (int(x), int(y)), output_image)
+    else:
+        background_image.paste(output_image, (int(x*2), int(y*2)), output_image)
+
 
     # Guarda la imagen compuesta en un archivo en la carpeta de subida de archivos 'static/uploads'
     output_path = os.path.join(app.config['UPLOAD_FOLDER'], f'{uploaded_id}.png')
