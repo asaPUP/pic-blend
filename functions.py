@@ -46,8 +46,7 @@ def generate_image(app, request, session):
     # Procesa la imagen para eliminar el fondo
     temp_path = os.path.join(app.config['UPLOAD_FOLDER'], f"tmp/{session['up_image_filename']}")
     input_image = Image.open(temp_path)
-    input_image = input_image.resize((200, 200))
-    output_image = remove(input_image)
+    
 
     # Pega la imagen procesada sobre el fondo seleccionado, con un tamaño que no exceda el del fondo pero que mantenga la relación de aspecto
     background_id = request.form['background-id']
@@ -55,10 +54,14 @@ def generate_image(app, request, session):
 
     # Abre la imagen de fondo y obtiene sus dimensiones
     background_image = Image.open(background_path)
+
+    background_image.thumbnail((500, 500), Image.Resampling.LANCZOS)
     background_width, background_height = background_image.size
+    output_image = remove(input_image)
+    output_image.thumbnail((background_width / 4, background_height / 4), Image.Resampling.LANCZOS)
 
     # Obtiene las dimensiones de la imagen de salida (la que se obtiene al eliminar el fondo)
-    output_width, output_height = output_image.size
+    #output_width, output_height = output_image.size
     
     # Redimensiona la imagen de salida si es necesario, dejando un margen de 10px en cada lado
     # if output_width > background_width:
@@ -74,10 +77,8 @@ def generate_image(app, request, session):
     x, y = (request.form['x'], request.form['y'])
     x = int(x)
     y = int(y)
-    if (x == 0 and y == 0):
-        background_image.paste(output_image, (x, y), output_image)
-    else:
-        background_image.paste(output_image, (x + 200, y + 200), output_image)
+
+    background_image.paste(output_image, (int(x // 1.6), int(y // 1.6)), output_image)
 
     # Guarda la imagen compuesta en un archivo en la carpeta de subida de archivos 'static/uploads'
     output_path = os.path.join(app.config['UPLOAD_FOLDER'], f'{uploaded_id}.png')
