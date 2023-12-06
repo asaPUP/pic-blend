@@ -42,7 +42,7 @@ try:
         server.login(smtp_username, smtp_password)
         server.sendmail(sender_email, receiver_email, msg.as_string())
 
-    print("Correo Enviado!")
+    print("Correo electrónico enviado exitosamente.")
 
 except Exception as e:
     print(f"Ocurrió un error al enviar el correo electrónico: {e}")

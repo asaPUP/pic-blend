@@ -9,6 +9,7 @@ import ssl
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import sys
+import threading
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 database_path = os.path.join(current_dir, 'database/sistemin.db')
@@ -70,13 +71,13 @@ def resultado(id):
 @app.route('/enviar/<int:id>')
 def enviar_correo(id):
     receiver_email = request.args.get('email')
-    url = request.url_root + url_for('resultado', id=id)
+    url = request.url_root + "resultado/" + str(id)
 
     # Enviar correo electrónico en un hilo separado
-    import threading
     thread = threading.Thread(target=send_email_message, args=(receiver_email, url))
     thread.start()
 
+    # Redirigir a la página de resultado
     return redirect(url_for('resultado', id=id))
 
 
