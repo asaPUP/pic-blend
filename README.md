@@ -12,8 +12,8 @@ PicBlend is a web application built with Flask that allows users to creatively m
 
 ## Technologies Used:
 
-- Python
-- Flask
+- Python 3.11
+- Flask Framework
 - Pillow (Python Imaging Library)
 - rembg (Background Removal Tool)
 - SQLite (Database Management)
