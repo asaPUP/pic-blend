@@ -6,8 +6,8 @@ from email.mime.multipart import MIMEMultipart
 
 print("Entering emailmessage.py script")
 
-sender_email = "sistemin.uabc@outlook.com"
-subject = "SISTEMIN: Your image is ready"
+sender_email = "placeholder@email.com"
+subject = "PicBlend: Your image is ready"
 receiver_email = sys.argv[1]
 url = sys.argv[2]
 message = f"""Hello!
@@ -19,10 +19,10 @@ print(f"Receiver: {receiver_email}")
 print(f"URL: {url}")
 print(f"Message: {message}")
 
-smtp_server = "smtp.office365.com"
-smtp_port = 587
+smtp_server = "smtp.office365.com"  # Use your email provider's SMTP server
+smtp_port = 587                     # Use your email provider's SMTP port
 smtp_username = sender_email
-smtp_password = "Sistemin2023!"
+smtp_password = "PlaceholderPassword"
 
 try:
     # Create message
