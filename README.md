@@ -75,4 +75,4 @@ $ flask run
 $ flask --debug run  # (to start it in debug mode)
 ```
 
-**IMPORTANT:** Run `$ sudo xhost +` before running the server first to allow access to the screen with pywhatkit.
+**IMPORTANT:** Run `$ sudo xhost +` before running the server to allow access to the screen with pywhatkit.
