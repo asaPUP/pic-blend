@@ -1,27 +1,27 @@
 {% extends "base.html" %}
 
-{% block title %} Galería {% endblock %}
+{% block title %} Gallery {% endblock %}
 
 {% block styles %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/backgrounds.css') }}">
 {% endblock %}
 
 {% block body %}
-<h2>Galería</h2>
-<p>Selecciona una imágen para procesar en el fondo</p>
+<h2>Gallery</h2>
+<p>Select an image to process on the background</p>
 
 <ul class="image-gallery">
     <li>
         {% for image in backgrounds %}
         <div>
             <img src="../{{ image.1 }}" alt="{{ image.0 }}.png" width="200">
-            <a class="" href="{{ url_for('procesar_imagen', background_id=image.0) }}">Procesar Imagen</a>
+            <a class="" href="{{ url_for('process_image', background_id=image.0) }}">Process Image</a>
         </div>
         {% endfor %}
     </li>
 </ul>
 <!--
-    Una vez se selecciona una imagen de la galería, se envía el id de la imagen a procesar-imagen/id,
-    donde id es el id de la imagen seleccionada en la galería
+    Once an image from the gallery is selected, the id of the image is sent to process-image/id,
+    where id is the id of the selected image in the gallery
 -->
 {% endblock %}

@@ -1,25 +1,25 @@
 {% extends "base.html" %}
 
-{% block title %} Procesar Imágen {% endblock %}
+{% block title %} Process Image {% endblock %}
 
 {% block body %}
 <br>
-<h3 class="oneline">Cargar Imagen</h3>
+<h3 class="oneline">Upload Image</h3>
 <br>
 
 <div class="oneline">
-    <form class="oneline" action="/procesar-imagen" method="POST" enctype="multipart/form-data">
+    <form class="oneline" action="/process-image" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="background_id" value="{{ background_id }}">
-        <input class="btn" type="file" name="imagen">
-        <input class="btn" type="submit" value="Procesar Imagen">
+        <input class="btn" type="file" name="image">
+        <input class="btn" type="submit" value="Process Image">
     </form>
 </div>
 <br><br>
 <div class="oneline">
-    <h3>Fondo seleccionado</h3>
+    <h3>Selected Background</h3>
 </div>
 <br>
 <div class="oneline">
-    <img src="../static/img/backgrounds/{{ background_id }}.jpg" alt="Fondo seleccionado" height="300">
+    <img src="../static/img/backgrounds/{{ background_id }}.jpg" alt="Selected Background" height="300">
 </div>
 {% endblock %}

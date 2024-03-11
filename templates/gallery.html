@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %} Gallery {% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/gallery.css') }}">
+{% endblock %}
+
+{% block body %}
+<br>
+<h3 class="oneline"> Gallery </h3>
+<br>
+
+<!-- Loop through the list of images and display each one -->
+{% for image in gallery %}
+<div class="oneline">
+    <a target="_blank" href="../{{ image.1 }}">
+        <img src="../{{ image.1 }}" alt="{{ image.0 }}.png">
+    </a>
+</div>
+<br><br>
+{% endfor %}
+
+{% endblock %}

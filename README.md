@@ -1,62 +1,61 @@
-<h1>Bienvenido a SISTEMIN </h1>
-Proyecto para la materia de Ingenieria de Software.
+# PicBlend
 
-## Instalación del proyecto
+PicBlend is a web application built with Flask that allows users to creatively merge images. Whether you want to overlay an image onto a background, remove backgrounds automatically, or generate a QR code for easy access, PicBlend has you covered.
 
-Para la instalación se necesita Python 3.11.x. Primeramente se crea una 
-máquina virtual dentro del directorio raíz del proyecto.
+## Features:
 
-GNU/Linux o MacOS:
-```
+- Select images from a library of backgrounds.
+- Upload images from your computer to overlay on selected backgrounds.
+- Automatic background removal for uploaded images.
+- Options to send generated images via email, download them, or generate QR codes.
+- Intuitive and user-friendly interface.
+
+## Technologies Used:
+
+- Python
+- Flask
+- Image processing libraries (e.g., OpenCV)
+- Email sending
+- QR code generation
+
+## Usage:
+
+### Installation:
+
+To set up the project, you'll need Python 3.11.x. Start by creating a virtual environment within the project directory.
+
+```bash
 $ python3 -m venv venv
-$ source ./venv/bin/activate
+$ source ./venv/bin/activate`
 ```
 
-Windows:
-```
-virtualenv venv
-.\venv\Scripts\activate
-```
+Then, install the required dependencies:
 
-Luego, se instalan las dependencias usando pip.
+`$ python3 -m pip install -r requirements.txt`
 
-GNU/Linux o MacOS (venv):
-```
-$ python3 -m pip install -r requirements.txt
-```
+### Running the Application:
 
-Windows (venv):
-```
-pip install -r requirements.txt
-```
+Once the dependencies are installed, execute the Flask app:
 
-## Ejecución del proyecto
-
-Y finalmente, ejecutamos la app de Flask.
-
-GNU/Linux o MacOS(venv):
-```
+```bash
 $ export FLASK_APP=app.py
-$ flask run
+$ flask run`
 ```
 
-Windows(venv):
-```
-flask run
-```
+Navigate to the provided address in your browser to access the application.
 
-Ingresa a la dirección que te indica la terminal para ver la aplicación.
+### Deactivating the Virtual Environment:
 
-## Desactivar el entorno virtual
+To deactivate the virtual environment, simply run:
 
-Para desactivar el entorno virtual, ejecuta el siguiente comando:
+`$ deactivate`
 
-GNU/Linux o MacOS:
-```
-$ deactivate
-```
+## Contributing:
 
-Windows:
-```
-deactivate
-```
+Contributions to PicBlend are welcome! If you'd like to contribute, please follow these steps:
+
+1.  Fork the repository.
+2.  Create a new branch for your feature or bug fix (`git checkout -b feature/AmazingFeature`).
+3.  Commit your changes (`git commit -am 'Add some amazing feature'`).
+4.  Push your branch to your fork (`git push origin feature/AmazingFeature`).
+5.  Open a pull request.

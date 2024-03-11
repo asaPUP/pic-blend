@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block title %} Result {% endblock %}
+
+{% block body %}
+<!-- To generate the QR code, the qrcodejs library is used -->
+
+{% block scripts %}
+<script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/result.css') }}">
+{% endblock %}
+
+<h3>Processed Image</h3>
+<section id="main-content">
+    <section id="image-section">
+        <!-- The template receives a tuple image = (id, relative_path), relative_path = static/uploads/{id}.png -->
+        <div class="oneline">
+            <a target="_blank" href="../{{ image.1 }}">
+                <img src="../{{ image.1 }}" alt="{{ image.0 }}.png" width="200">
+            </a>
+        </div>
+        <div class="oneline" style="margin-top: 10px">
+            <a href="../{{ image.1 }}" class="btn" target="_blank" download>
+                Download Image
+            </a>
+        </div>
+        <div class="oneline" style="margin-top: 50px">
+        </div>
+        <div class="oneline" style="margin-top: 10px" id="send-url">
+            <label for="email">Send via Email:</label>
+            <input type="email" name="email" placeholder="Email" required>
+            <input class="btn" type="submit" value="Send Email" onclick="sendEmail()">
+        </div>
+        <div class="oneline" style="margin-top: 10px" id="send-url">
+            <label for="phone">Send via WhatsApp:</label>
+            <input type="text" name="phone" placeholder="WA Number" required>
+            <input class="btn" type="submit" value="Send WA Message" onclick="sendWA()">
+        </div>
+    </section>
+    <section id="qr-code-section">
+        <div class="oneline">
+            <p>
+                Image QR Code:
+            </p>
+        </div>
+        <div class="oneline" id="qrcode">
+        </div>
+        <div class="oneline">
+            <a href="{{ request.url_root }}result/{{ image.0 }}" id="url">
+                {{ request.url_root }}result/{{ image.0 }}
+            </a>
+        </div>
+    </section>
+</section>
+<script>
+    var qrcode = new QRCode(document.getElementById("qrcode"), {
+        text: "{{ request.url_root }}result/{{ image.0 }}",
+        colorDark: "#000000",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.H
+    });
+
+    function sendEmail() {
+        if (document.getElementsByName("email")[0].value == "") {
+            alert("You must enter an email address");
+            return;
+        }
+
+        var email = document.getElementsByName("email")[0].value;
+
+        console.log(email);
+
+        window.location.href = "{{ request.url_root }}send/{{ image.0 }}?email=" + email;
+    }
+
+    function sendWA() {
+        if (document.getElementsByName("phone")[0].value == "") {
+            alert("You must enter a phone number");
+            return;
+        }
+
+        var phone = document.getElementsByName("phone")[0].value;
+
+        console.log(phone);
+
+        window.location.href = "{{ request.url_root }}send-wa/{{ image.0 }}?phone=" + phone;
+    }
+</script>
+{% endblock %}

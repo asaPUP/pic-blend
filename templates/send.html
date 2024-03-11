@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %} Process Image {% endblock %}
+
+{% block body %}
+
+<div class="">
+
+    <h3 class="oneline">Receive Your Image</h3>
+    <br>
+    <form action="" method="" enctype="">
+        <div class="oneline">
+            <p>Enter your email address</p>
+            <input type="text" id="" placeholder="example@gmail.com">
+        </div>
+        <br>
+        <div class="oneline">
+            <p>Enter your phone number</p>
+            <input type="text" id="" placeholder="0123456789">
+        </div>
+    </form>
+
+    <a class="btn" href="{{ url_for('back') }}"> Send </a>
+
+</div>
+
+{% endblock %}

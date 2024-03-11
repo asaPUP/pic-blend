@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html lang="es_MX">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    
+
     <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
 
-    <!-- font awesome  -->
+    <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/8376d6d866.js" crossorigin="anonymous"></script>
-    <title>{% block title%}{% endblock %} - Sistemin</title>
+    <title>{% block title%}{% endblock %} - PicBlend</title>
 
     {% block styles %}
     {% endblock %}
@@ -15,16 +16,16 @@
     {% block scripts %}
     {% endblock %}
 </head>
+
 <body>
     <header>
-    <a href="{{ url_for('index') }}">
-    <h5> Sistemin <i class="fa-solid fa-photo-film"></i> </h5>
-    </a>
+        <a href="{{ url_for('index') }}">
+            <h5> PicBlend <i class="fas fa-photo-video"></i> </h5>
+        </a>
     </header>
 
-{% block body %}
-
-
-{% endblock %}
+    {% block body %}
+    {% endblock %}
 </body>
+
 </html>
