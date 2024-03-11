@@ -14,9 +14,15 @@ PicBlend is a web application built with Flask that allows users to creatively m
 
 - Python
 - Flask
-- Image processing libraries (e.g., OpenCV)
-- Email sending
-- QR code generation
+- Pillow (Python Imaging Library)
+- rembg (Background Removal Tool)
+- SQLite (Database Management)
+- Werkzeug (WSGI Utility Library)
+- SMTP (Email Sending)
+- SSL (Secure Sockets Layer)
+- email.mime (MIME Email Formatting)
+- threading (Multithreading)
+- pywhatkit (WhatsApp Automation)
 
 ## Usage:
 
@@ -54,8 +60,19 @@ To deactivate the virtual environment, simply run:
 
 Contributions to PicBlend are welcome! If you'd like to contribute, please follow these steps:
 
-1.  Fork the repository.
-2.  Create a new branch for your feature or bug fix (`git checkout -b feature/AmazingFeature`).
-3.  Commit your changes (`git commit -am 'Add some amazing feature'`).
-4.  Push your branch to your fork (`git push origin feature/AmazingFeature`).
-5.  Open a pull request.
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix (`git checkout -b feature/AmazingFeature`).
+3. Commit your changes (`git commit -am 'Add some amazing feature'`).
+4. Push your branch to your fork (`git push origin feature/AmazingFeature`).
+5. Open a pull request.
+
+## Starting the Development Server:
+
+To start the development server, use:
+
+```
+$ flask run
+$ flask --debug run  # (to start it in debug mode)
+```
+
+**IMPORTANT:** Run `$ sudo xhost +` before running the server first to allow access to the screen with pywhatkit.
