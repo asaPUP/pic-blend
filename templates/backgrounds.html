@@ -8,14 +8,14 @@
 
 {% block body %}
 <h2>Gallery</h2>
-<p>Select an image to process on the background</p>
+<p>Select a background to blend your picture with</p>
 
 <ul class="image-gallery">
     <li>
         {% for image in backgrounds %}
         <div>
             <img src="../{{ image.1 }}" alt="{{ image.0 }}.png" width="200">
-            <a class="" href="{{ url_for('process_image', background_id=image.0) }}">Process Image</a>
+            <a class="" href="{{ url_for('process_image', background_id=image.0) }}">Use this one</a>
         </div>
         {% endfor %}
     </li>

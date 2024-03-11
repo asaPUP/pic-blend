@@ -4,14 +4,14 @@
 
 {% block body %}
 <br>
-<h3 class="oneline">Upload Image</h3>
+<h3 class="oneline">Upload Picture</h3>
 <br>
 
 <div class="oneline">
     <form class="oneline" action="/process-image" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="background_id" value="{{ background_id }}">
         <input class="btn" type="file" name="image">
-        <input class="btn" type="submit" value="Process Image">
+        <input class="btn" type="submit" value="Blend Picture">
     </form>
 </div>
 <br><br>
