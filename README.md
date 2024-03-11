@@ -1,6 +1,7 @@
 # PicBlend
 
 PicBlend is a Flask-based web application designed to streamline the process of blending images. With PicBlend, users can seamlessly remove the background of an image and overlay it onto a new background selected from an internal gallery.
+
 Additionally, PicBlend offers features such as generating a QR code for the resulting picture and enabling users to share the link via Email and WhatsApp, simplifying the process of sharing their creations.
 
 ## Features:
